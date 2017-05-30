@@ -1,0 +1,10 @@
+---
+branches: master
+projects:
+  Hormones:
+    path: /Hormones/
+    model: default
+  HormonesUtils:
+    path: /HormonesUtils/
+    model: default
+...
