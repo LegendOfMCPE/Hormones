@@ -81,7 +81,7 @@ class LymphVessel extends QueryMysqlTask{
 				SELECT GREATEST(0, MAX(maxSlots - usedSlots)) maxAvail FROM hormones_tissues
 					WHERE organId = ? AND UNIX_TIMESTAMP() - UNIX_TIMESTAMP(lastOnline) < 10 AND tissueId <> ?
 			) t INNER JOIN hormones_tissues t2 ON t.maxAvail = t2.maxSlots - t2.usedSlots
-				AND organId = ? AND UNIX_TIMESTAMP() - UNIX_TIMESTAMP(lastOnline) < 10 AND tissueId <> ?", [
+				AND organId = ? AND UNIX_TIMESTAMP() - UNIX_TIMESTAMP(lastOnline) < 10 AND tissueId <> ? LIMIT 1", [
 				["i", $this->organId], ["s", $this->tissueId],
 				["i", $this->organId], ["s", $this->tissueId]
 			]);
@@ -99,7 +99,7 @@ class LymphVessel extends QueryMysqlTask{
 				var_dump($statResult->rows);
 				$this->setResult(new Exception("Lymph query returns no rows"));
 			}else{
-				if($altResult instanceof MysqlSelectResult and count($altResult->rows) >= 1){
+				if($altResult instanceof MysqlSelectResult and count($altResult->rows) === 1){
 					$altResult->fixTypes([
 						"ip" => MysqlSelectResult::TYPE_STRING,
 						"port" => MysqlSelectResult::TYPE_INT,
