@@ -99,7 +99,7 @@ class LymphVessel extends QueryMysqlTask{
 				var_dump($statResult->rows);
 				$this->setResult(new Exception("Lymph query returns no rows"));
 			}else{
-				if($altResult instanceof MysqlSelectResult and count($altResult->rows) === 1){
+				if($altResult instanceof MysqlSelectResult and count($altResult->rows) >= 1){
 					$altResult->fixTypes([
 						"ip" => MysqlSelectResult::TYPE_STRING,
 						"port" => MysqlSelectResult::TYPE_INT,
