@@ -38,7 +38,7 @@ class KickPlayerHormone extends Hormone{
 		];
 	}
 
-	public function respond(array $args){
+	public function respond(array $args) : void{
 		/** @var HormonesPlugin $plugin */
 		list($plugin) = $args;
 		$player = $plugin->getServer()->getPlayerExact($this->playerName);

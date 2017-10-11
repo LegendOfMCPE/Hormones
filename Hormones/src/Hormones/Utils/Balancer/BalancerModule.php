@@ -126,7 +126,7 @@ class BalancerModule implements Listener{
 	 *
 	 * @priority LOW
 	 */
-	public function e_onQueryRegen(QueryRegenerateEvent $event){
+	public function e_onQueryRegen(QueryRegenerateEvent $event) : void{
 		switch($this->getQueryPlayerCountMode()){
 			case "tissue":
 				break;
@@ -146,7 +146,7 @@ class BalancerModule implements Listener{
 	 * @priority        HIGH
 	 * @ignoreCancelled true
 	 */
-	public function e_onLogin(PlayerLoginEvent $event){
+	public function e_onLogin(PlayerLoginEvent $event) : void{
 		// We can't check permissions here because permission plugins have not defined them yet
 
 		$player = $event->getPlayer();
@@ -183,7 +183,7 @@ class BalancerModule implements Listener{
 		}
 	}
 
-	public function onDisable(){
+	public function onDisable() : void{
 		$result = MysqlResult::executeQuery($this->getPlugin()->connectMainThreadMysql(), /** @lang MySQL */
 			"SELECT ip, port, maxSlots, maxSlots - usedSlots availSlots FROM hormones_tissues
 				WHERE organId = ? AND tissueId = ? AND maxSlots - usedSlots > 0 AND UNIX_TIMESTAMP() - UNIX_TIMESTAMP(lastOnline) < 5
@@ -246,7 +246,7 @@ class BalancerModule implements Listener{
 	/**
 	 * @return string|null
 	 */
-	public function getAlwaysTransferDestinationName(){
+	public function getAlwaysTransferDestinationName() : ?string{
 		return $this->alwaysTransferName;
 	}
 
@@ -268,7 +268,7 @@ class BalancerModule implements Listener{
 	/**
 	 * @return string|null
 	 */
-	public function getAlwaysFallbackName(){
+	public function getAlwaysFallbackName() : ?string{
 		return $this->alwaysFallbackName;
 	}
 

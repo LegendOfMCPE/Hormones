@@ -54,7 +54,7 @@ class LymphVessel extends QueryMysqlTask{
 		$this->objectCreated = microtime(true);
 	}
 
-	protected function execute(){
+	protected function execute() : void{
 		$mysqli = $this->getMysqli();
 		$stmt = $mysqli->prepare(/** @lang MySQL */
 			"INSERT INTO hormones_tissues
@@ -144,7 +144,7 @@ class LymphVessel extends QueryMysqlTask{
 		}
 	}
 
-	public function onCompletion(Server $server){
+	public function onCompletion(Server $server) : void{
 		$plugin = HormonesPlugin::getInstance($server);
 		if(!$plugin->isEnabled()){
 			return;

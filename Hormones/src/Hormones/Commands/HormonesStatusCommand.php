@@ -27,7 +27,7 @@ class HormonesStatusCommand extends HormonesCommand{
 		$this->setPermission("hormones.admin.status");
 	}
 
-	public function execute(CommandSender $sender, string $commandLabel, array $args){
+	public function execute(CommandSender $sender, string $commandLabel, array $args) : bool{
 		if(!$this->testPermission($sender)){
 			return false;
 		}

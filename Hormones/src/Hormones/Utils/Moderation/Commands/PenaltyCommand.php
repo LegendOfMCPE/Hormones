@@ -34,7 +34,7 @@ class PenaltyCommand extends HormonesCommand{
 		$this->setPermission("hormones.moderation.moderator.sectional.{$this->type};hormones.moderation.moderator.global.{$this->type}");
 	}
 
-	public function execute(CommandSender $sender, string $commandLabel, array $args){
+	public function execute(CommandSender $sender, string $commandLabel, array $args) : bool{
 		if(!$this->testPermission($sender)){
 			return false;
 		}
@@ -57,7 +57,7 @@ class PenaltyCommand extends HormonesCommand{
 				return false;
 			}
 		}else{
-			$duration = (int) (floatval($duration) * 60);
+			$duration = (int) ((float) $duration * 60);
 		}
 		$message = implode(" ", $args);
 		$organMask = $sender->hasPermission("hormones.moderation.moderator.global.{$this->type}") ? str_repeat("\xFF", 8) :

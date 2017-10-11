@@ -22,7 +22,7 @@ use libasynql\DirectQueryMysqlTask;
 use pocketmine\scheduler\PluginTask;
 
 class UpdateAccountStateTask extends PluginTask{
-	public function onRun(int $ticks){
+	public function onRun(int $ticks) : void{
 		/** @var HormonesPlugin $plugin */
 		$plugin = $this->getOwner();
 		foreach($plugin->getServer()->getOnlinePlayers() as $player){

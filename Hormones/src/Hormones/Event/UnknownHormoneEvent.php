@@ -50,11 +50,11 @@ class UnknownHormoneEvent extends HormonesEvent{
 		return $this->receptors;
 	}
 
-	public function getHormone(){
+	public function getHormone() : ?Hormone{
 		return $this->hormone;
 	}
 
-	public function setHormone(Hormone $hormone){
+	public function setHormone(Hormone $hormone) : void{
 		$this->hormone = $hormone;
 	}
 
@@ -62,7 +62,7 @@ class UnknownHormoneEvent extends HormonesEvent{
 		return $this->respondArgs;
 	}
 
-	public function setRespondArgs(array $respondArgs){
+	public function setRespondArgs(array $respondArgs) : void{
 		$this->respondArgs = $respondArgs;
 	}
 }

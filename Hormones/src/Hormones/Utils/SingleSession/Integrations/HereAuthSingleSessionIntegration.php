@@ -44,7 +44,7 @@ class HereAuthSingleSessionIntegration extends SingleSessionAuthIntegration{
 	 * @priority        MONITOR
 	 * @ignoreCancelled true
 	 */
-	public function e_onAuth(HereAuthAuthenticationEvent $event){
+	public function e_onAuth(HereAuthAuthenticationEvent $event) : void{
 		$this->onLoginImpl($event->getPlayer());
 	}
 

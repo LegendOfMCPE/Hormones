@@ -99,7 +99,7 @@ class SingleSessionModule implements Listener{
 	 * @priority        MONITOR
 	 * @ignoreCancelled true
 	 */
-	public function e_onLogin(PlayerLoginEvent $event){
+	public function e_onLogin(PlayerLoginEvent $event) : void{
 		$hormone = new NotifyJoinHormone();
 		$hormone->username = $event->getPlayer()->getName();
 		$hormone->ip = $event->getPlayer()->getAddress();

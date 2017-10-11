@@ -41,7 +41,7 @@ class Artery extends QueryMysqlTask{
 		$this->objectCreated = microtime(true);
 	}
 
-	protected function execute(){
+	protected function execute() : void{
 		$bitmask = HormonesPlugin::setNthBit($this->organId, 8);
 		if($this->hormonesAfter !== Artery::STARTUP_ID){
 			$after = "hormoneId > ?";
@@ -67,7 +67,7 @@ class Artery extends QueryMysqlTask{
 		}
 	}
 
-	public function onCompletion(Server $server){
+	public function onCompletion(Server $server) : void{
 		$plugin = HormonesPlugin::getInstance($server);
 		if(!$plugin->isEnabled()){
 			return;

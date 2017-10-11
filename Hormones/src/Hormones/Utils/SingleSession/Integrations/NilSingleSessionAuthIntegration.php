@@ -35,7 +35,7 @@ class NilSingleSessionAuthIntegration extends SingleSessionAuthIntegration{
 	 * @priority        MONITOR
 	 * @ignoreCancelled true
 	 */
-	public function e_onLogin(PlayerLoginEvent $event){
+	public function e_onLogin(PlayerLoginEvent $event) : void{
 		$this->onLoginImpl($event->getPlayer());
 	}
 

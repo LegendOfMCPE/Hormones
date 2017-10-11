@@ -31,7 +31,7 @@ class Timer{
 		return $this->threshold;
 	}
 
-	public function addDatum(float $datum){
+	public function addDatum(float $datum) : void{
 		$this->data[] = $datum;
 		while(count($this->data) > $this->getThreshold()){
 			array_shift($this->data);

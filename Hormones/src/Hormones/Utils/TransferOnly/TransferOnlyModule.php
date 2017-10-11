@@ -84,7 +84,7 @@ class TransferOnlyModule implements Listener{
 	 * @priority        MONITOR
 	 * @ignoreCancelled true
 	 */
-	public function e_onTransfer(PlayerTransferEvent $event){
+	public function e_onTransfer(PlayerTransferEvent $event) : void{
 		$hormone = new DeclareTransferHormone(null, TransferOnlyModule::HORMONE_TIMEOUT);
 		$hormone->username = $event->getPlayer()->getName();
 		$hormone->userIp = $event->getPlayer()->getAddress();
@@ -106,7 +106,7 @@ class TransferOnlyModule implements Listener{
 	 * @ignoreCancelled false
 	 *                  (Yes, false, to force memory clearing)
 	 */
-	public function e_onLogin(PlayerLoginEvent $event){
+	public function e_onLogin(PlayerLoginEvent $event) : void{
 		if($this->mode === TransferOnlyModule::MODE_LOGIN || $this->mode === TransferOnlyModule::MODE_LOGIN_SYNC){
 			$player = $event->getPlayer();
 			if($this->confirmTransfer($player)){
@@ -151,7 +151,7 @@ class TransferOnlyModule implements Listener{
 	/**
 	 * @param PlayerJoinEvent $event
 	 */
-	public function e_onJoin(PlayerJoinEvent $event){
+	public function e_onJoin(PlayerJoinEvent $event) : void{
 		if($this->mode === TransferOnlyModule::MODE_JOIN){
 			$plugin = $this->getPlugin();
 			$plugin->getServer()->getScheduler()->scheduleDelayedTask(new class($this, $event->getPlayer()) extends PluginTask{
@@ -189,7 +189,7 @@ class TransferOnlyModule implements Listener{
 		return false;
 	}
 
-	public function confirmTransferOrKick(Player $player){
+	public function confirmTransferOrKick(Player $player) : void{
 		if(!$this->confirmTransfer($player)){
 			$player->kick(TransferOnlyModule::KICK_MESSAGE, false);
 		}
@@ -199,7 +199,7 @@ class TransferOnlyModule implements Listener{
 		return in_array(strtolower("$destIp:$destPort"), $this->aka);
 	}
 
-	public function declareTransfer(PreTransferDeclaration $decl){
+	public function declareTransfer(PreTransferDeclaration $decl) : void{
 		$this->decls[spl_object_hash($decl)] = $decl;
 	}
 }

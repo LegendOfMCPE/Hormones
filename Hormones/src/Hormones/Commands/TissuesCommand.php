@@ -25,7 +25,7 @@ class TissuesCommand extends HormonesCommand{
 		parent::__construct($plugin, "tissues", "See all online servers", "/servers", ["servers"]);
 	}
 
-	public function execute(CommandSender $sender, string $commandLabel, array $args){
+	public function execute(CommandSender $sender, string $commandLabel, array $args) : void{
 		$this->getPlugin()->getServer()->getScheduler()->scheduleAsyncTask(new TissueListTask($this->getPlugin(), $sender));
 	}
 }

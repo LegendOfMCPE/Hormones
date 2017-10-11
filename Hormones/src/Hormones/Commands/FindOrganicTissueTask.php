@@ -33,9 +33,7 @@ class FindOrganicTissueTask extends QueryMysqlTask{
 	protected $organId;
 	/** @var string */
 	protected $tissueId;
-	/**
-	 * @var string
-	 */
+	/** @var string */
 	protected $cause;
 
 	public function __construct(HormonesPlugin $plugin, Player $player, string $cause, string $organName, int $organId = null, callable $onUnknownOrgan = null, callable $onServersFull = null){
@@ -46,7 +44,7 @@ class FindOrganicTissueTask extends QueryMysqlTask{
 		$this->cause = $cause;
 	}
 
-	protected function execute(){
+	protected function execute() : void{
 		$db = $this->getMysqli();
 		if($this->organId === null){
 			$result = MysqlResult::executeQuery($db, "SELECT organId FROM hormones_organs WHERE name = ?", [["s", $this->organName]]);
@@ -67,7 +65,7 @@ class FindOrganicTissueTask extends QueryMysqlTask{
 			[["i", $this->organId], ["s", $this->tissueId]]));
 	}
 
-	public function onCompletion(Server $server){
+	public function onCompletion(Server $server) : void{
 		/** @var HormonesPlugin $plugin */
 		/** @var Player $player */
 		/** @var callable|null $onUnknownOrgan */

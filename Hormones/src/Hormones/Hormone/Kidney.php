@@ -29,7 +29,7 @@ use pocketmine\scheduler\PluginTask;
 class Kidney extends PluginTask{
 	private $expiry;
 
-	public static function init(HormonesPlugin $plugin){
+	public static function init(HormonesPlugin $plugin) : void{
 		if($plugin->getConfig()->getNested("kidney.enabled", true)){
 			$kidney = new Kidney($plugin);
 			$kidney->expiry = $plugin->getConfig()->getNested("kidney.expiry", 600);
@@ -37,7 +37,7 @@ class Kidney extends PluginTask{
 		}
 	}
 
-	public function onRun(int $currentTick){
+	public function onRun(int $currentTick) : void{
 		/** @var HormonesPlugin $plugin */
 		$plugin = $this->getOwner();
 		$plugin->getServer()->getScheduler()->scheduleAsyncTask(new DirectQueryMysqlTask($plugin->getCredentials(),

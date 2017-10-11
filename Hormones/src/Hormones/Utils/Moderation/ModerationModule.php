@@ -50,7 +50,7 @@ class ModerationModule implements Listener{
 	 * @priority        LOW
 	 * @ignoreCancelled true
 	 */
-	public function e_onChat(PlayerChatEvent $event){
+	public function e_onChat(PlayerChatEvent $event) : void{
 		foreach($this->penaltyGroups[Penalty::TYPE_MUTE] as $k => $penalty){
 			if($penalty->hasExpired()){
 				unset($this->penaltyGroups[Penalty::TYPE_MUTE][$k]);
@@ -68,7 +68,7 @@ class ModerationModule implements Listener{
 	 * @priority        HIGH
 	 * @ignoreCancelled true
 	 */
-	public function e_onPreLogin(PlayerPreLoginEvent $event){
+	public function e_onPreLogin(PlayerPreLoginEvent $event) : void{
 		foreach($this->penaltyGroups[Penalty::TYPE_BAN] as $k => $penalty){
 			if($penalty->hasExpired()){
 				unset($this->penaltyGroups[Penalty::TYPE_BAN][$k]);
@@ -89,7 +89,7 @@ class ModerationModule implements Listener{
 		}
 	}
 
-	public function e_onJoin(PlayerJoinEvent $event){
+	public function e_onJoin(PlayerJoinEvent $event) : void{
 		foreach($this->penaltyGroups as $type => $penalties){
 			foreach($penalties as $k => $penalty){
 				if($penalty->hasExpired()){
@@ -101,7 +101,7 @@ class ModerationModule implements Listener{
 		}
 	}
 
-	public function addPenaltySession(Penalty $session){
+	public function addPenaltySession(Penalty $session) : void{
 		$this->penaltyGroups[$session->type][spl_object_hash($session)] = $session;
 	}
 }

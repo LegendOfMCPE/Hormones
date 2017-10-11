@@ -2,6 +2,7 @@ name: Hormones
 version: 2.1.0
 api:
 - 3.0.0-alpha7
+- 3.0.0-alpha8
 main: Hormones\HormonesPlugin
 authors:
 - SOFe

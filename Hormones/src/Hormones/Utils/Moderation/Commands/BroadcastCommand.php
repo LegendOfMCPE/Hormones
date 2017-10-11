@@ -37,7 +37,7 @@ class BroadcastCommand extends HormonesCommand{
 		$this->setPermission($global ? "hormones.moderation.moderator.global.broadcast" : "hormones.moderation.moderator.sectional.broadcast");
 	}
 
-	public function execute(CommandSender $sender, string $commandLabel, array $args){
+	public function execute(CommandSender $sender, string $commandLabel, array $args) : bool{
 		if(!$this->testPermission($sender)){
 			return false;
 		}

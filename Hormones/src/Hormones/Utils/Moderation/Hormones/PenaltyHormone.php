@@ -45,7 +45,7 @@ class PenaltyHormone extends Hormone{
 		];
 	}
 
-	public function respond(array $args){
+	public function respond(array $args) : void{
 		/** @var HormonesPlugin $plugin */
 		list($plugin) = $args;
 		$plugin->getModerationModule()->addPenaltySession($penalty = $this->toPenalty());

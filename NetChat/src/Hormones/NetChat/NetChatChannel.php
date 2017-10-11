@@ -43,11 +43,11 @@ class NetChatChannel{
 		$this->defaultPerm = $defaultPerm;
 	}
 
-	public function addKnownSubscription(NetChatSubscription $sub){
+	public function addKnownSubscription(NetChatSubscription $sub) : void{
 		$this->onlineSubs[strtolower($sub->session->getPlayer()->getName())] = $sub;
 	}
 
-	public function removeKnownOnlineSubscription(NetChatSubscription $sub){
+	public function removeKnownOnlineSubscription(NetChatSubscription $sub) : void{
 		if(!isset($this->onlineSubs[strtolower($sub->session->getPlayer()->getName())])){
 			throw new \InvalidArgumentException("No such subscriber");
 		}
@@ -79,7 +79,7 @@ class NetChatChannel{
 		return isset($this->permission);
 	}
 
-	public function getPermission(){
+	public function getPermission() : ?string{
 		return $this->permission;
 	}
 

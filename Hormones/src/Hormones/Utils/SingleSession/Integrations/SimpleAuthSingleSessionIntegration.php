@@ -40,7 +40,7 @@ class SimpleAuthSingleSessionIntegration extends SingleSessionAuthIntegration{
 	 * @priority        MONITOR
 	 * @ignoreCancelled true
 	 */
-	public function e_onAuth(PlayerAuthenticateEvent $event){
+	public function e_onAuth(PlayerAuthenticateEvent $event) : void{
 		$this->onLoginImpl($event->getPlayer());
 	}
 

@@ -31,7 +31,7 @@ class SwitchOrganCommand extends HormonesCommand{
 	private $organName;
 	private $organData;
 
-	public static function registerOrganicStuff(HormonesPlugin $plugin){
+	public static function registerOrganicStuff(HormonesPlugin $plugin) : void{
 		$mysqli = $plugin->getCredentials()->newMysqli();
 
 		$mode = $plugin->getConfig()->getNested("organicTransfer.mode", "group");
@@ -90,7 +90,7 @@ class SwitchOrganCommand extends HormonesCommand{
 		}
 	}
 
-	public function execute(CommandSender $sender, string $commandLabel, array $args){
+	public function execute(CommandSender $sender, string $commandLabel, array $args) : bool{
 		if(!$this->testPermission($sender)){
 			return false;
 		}

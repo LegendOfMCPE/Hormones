@@ -37,7 +37,7 @@ class DeclareTransferHormone extends Hormone{
 		return ["username" => $this->username, "ip" => $this->userIp];
 	}
 
-	public function respond(array $args){
+	public function respond(array $args) : void{
 		/** @var HormonesPlugin $plugin */
 		list($plugin) = $args;
 		$mod = $plugin->getTransferOnlyModule();

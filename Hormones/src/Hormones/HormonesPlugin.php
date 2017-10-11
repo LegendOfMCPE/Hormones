@@ -91,7 +91,7 @@ class HormonesPlugin extends PluginBase{
 		return $server->getPluginManager()->getPlugin("Hormones");
 	}
 
-	public function onLoad(){
+	public function onLoad() : void{
 		$opts = getopt("", ["hormones.data_folder:"]);
 		if(isset($opts["hormones.data_folder"])){
 			$dataFolder = rtrim(realpath($opts["hormones.data_folder"]), "/\\") . "/";
@@ -106,7 +106,7 @@ class HormonesPlugin extends PluginBase{
 		}
 	}
 
-	public function onEnable(){
+	public function onEnable() : void{
 		SpoonDetector::printSpoon($this, 'spoon.txt');
 
 		$this->saveDefaultConfig();
@@ -188,7 +188,7 @@ class HormonesPlugin extends PluginBase{
 		$this->transferOnlyModule = new TransferOnlyModule($this);
 	}
 
-	public function onDisable(){
+	public function onDisable() : void{
 		if(isset($this->balancerModule)){
 			$this->getBalancerModule()->onDisable();
 		}
@@ -208,11 +208,11 @@ class HormonesPlugin extends PluginBase{
 		return $this->mysqli;
 	}
 
-	private function calcServerId(){
+	private function calcServerId() : string{
 		return md5($this->getServer()->getDataPath() . $this->getServer()->getIp() . $this->getServer()->getPort() . Utils::getMachineUniqueId()->toString());
 	}
 
-	public function getTissueId(){
+	public function getTissueId() : string{
 		return $this->serverId;
 	}
 
@@ -245,11 +245,11 @@ class HormonesPlugin extends PluginBase{
 		return $this->lymphResult;
 	}
 
-	public function setLymphResult(LymphResult $lymphResult){
+	public function setLymphResult(LymphResult $lymphResult) : void{
 		$this->lymphResult = $lymphResult;
 	}
 
-	public function setLastArterialHormoneId(int $lastArterialHormoneId){
+	public function setLastArterialHormoneId(int $lastArterialHormoneId) : void{
 		$this->lastArterialHormoneId = $lastArterialHormoneId;
 	}
 
@@ -257,11 +257,11 @@ class HormonesPlugin extends PluginBase{
 		return $this->lastArterialHormoneId;
 	}
 
-	public function addDiastoleListener(callable $callable){
+	public function addDiastoleListener(callable $callable) : void{
 		$this->arteryDiastoleHandlers[] = $callable;
 	}
 
-	public function onArteryDiastole(){
+	public function onArteryDiastole() : void{
 		$handlers = $this->arteryDiastoleHandlers;
 		$this->arteryDiastoleHandlers = [];
 		foreach($handlers as $handler){

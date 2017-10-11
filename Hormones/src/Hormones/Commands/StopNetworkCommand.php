@@ -27,7 +27,7 @@ class StopNetworkCommand extends HormonesCommand{
 		$this->setPermission("hormones.admin.stop");
 	}
 
-	public function execute(CommandSender $sender, string $commandLabel, array $args){
+	public function execute(CommandSender $sender, string $commandLabel, array $args) : bool{
 		if(!$this->testPermission($sender)){
 			return false;
 		}

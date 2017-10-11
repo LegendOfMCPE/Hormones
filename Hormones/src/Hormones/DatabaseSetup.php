@@ -187,7 +187,7 @@ class DatabaseSetup{
 		return true;
 	}
 
-	private static function initialSetup(\mysqli $mysqli, Logger $logger){
+	private static function initialSetup(\mysqli $mysqli, Logger $logger) : void{
 		$queries = [
 			"CREATE TABLE hormones_organs (
 				organId TINYINT UNSIGNED PRIMARY KEY,

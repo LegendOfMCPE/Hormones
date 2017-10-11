@@ -29,7 +29,7 @@ abstract class SingleSessionAuthIntegration implements Listener{
 		$this->module = $module;
 	}
 
-	public function onLoginImpl(Player $player){
+	public function onLoginImpl(Player $player) : void{
 		if(($this->module->getMode() & SingleSessionModule::MODE_PUSH) !== 0){
 			$hormone = new PushPlayersHormone();
 			$hormone->username = $player->getName();

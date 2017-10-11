@@ -44,7 +44,7 @@ class PlayerBalancedEvent extends HormonesEvent implements Cancellable{
 	/**
 	 * @return AltServerObject|null
 	 */
-	public function getTargetServer(){
+	public function getTargetServer() : ?AltServerObject{
 		return $this->targetServer;
 	}
 }

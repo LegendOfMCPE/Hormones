@@ -42,7 +42,7 @@ class PushPlayersHormone extends Hormone{
 		];
 	}
 
-	public function respond(array $args){
+	public function respond(array $args) : void{
 		/** @var HormonesPlugin $plugin */
 		list($plugin) = $args;
 		if($plugin->getTissueId() === $this->sourceTissueId){

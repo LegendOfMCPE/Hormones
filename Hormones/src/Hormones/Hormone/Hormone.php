@@ -54,7 +54,7 @@ abstract class Hormone{
 	 * @param HormonesPlugin $plugin
 	 * @param array          $row
 	 */
-	public static function handleRow(HormonesPlugin $plugin, array $row){
+	public static function handleRow(HormonesPlugin $plugin, array $row) : void{
 		if(isset(Hormone::$knownTypes[$row["type"]])){
 			$class = Hormone::$knownTypes[$row["type"]];
 			$hormone = new $class($row["receptors"]);
@@ -77,7 +77,7 @@ abstract class Hormone{
 		$hormone->respond($args);
 	}
 
-	public function release(HormonesPlugin $plugin){
+	public function release(HormonesPlugin $plugin) : void{
 		$plugin->getServer()->getScheduler()->scheduleAsyncTask(new Vein($plugin->getCredentials(), $this, $plugin));
 	}
 
@@ -93,19 +93,19 @@ abstract class Hormone{
 		$this->hormoneExpiryTime = $this->hormoneCreationTime + $lifetime;
 	}
 
-	protected function enableAllOrgans(){
+	protected function enableAllOrgans() : void{
 		$this->hormoneReceptors = str_repeat("\xFF", 8);
 	}
 
-	protected function disableReceptors(){
+	protected function disableReceptors() : void{
 		$this->hormoneReceptors = str_repeat("\0", 8);
 	}
 
-	protected function enableOrgan(int $organId){
+	protected function enableOrgan(int $organId) : void{
 		$this->hormoneReceptors |= HormonesPlugin::setNthBit($organId, 8);
 	}
 
-	protected function disableOrgan(int $organId){
+	protected function disableOrgan(int $organId) : void{
 		$this->hormoneReceptors &= ~HormonesPlugin::setNthBit($organId, 8);
 	}
 
@@ -123,11 +123,11 @@ abstract class Hormone{
 		return $this->hormoneExpiryTime;
 	}
 
-	public function setExpiryTime(int $expiryTime){
+	public function setExpiryTime(int $expiryTime) : void{
 		$this->hormoneExpiryTime = $expiryTime;
 	}
 
-	public function setLifeTime(int $lifeTime){
+	public function setLifeTime(int $lifeTime) : void{
 		$this->hormoneExpiryTime = $this->hormoneCreationTime + $lifeTime;
 	}
 
@@ -137,7 +137,7 @@ abstract class Hormone{
 
 	public abstract function getData() : array;
 
-	public function setData(array $data){
+	public function setData(array $data) : void{
 		foreach($data as $k => $v){
 			$this->{$k} = $v;
 		}
@@ -150,7 +150,7 @@ abstract class Hormone{
 	 *
 	 * @param int $hormoneId
 	 */
-	public function setHormoneId(int $hormoneId){
+	public function setHormoneId(int $hormoneId) : void{
 		$this->hormoneId = $hormoneId;
 	}
 }

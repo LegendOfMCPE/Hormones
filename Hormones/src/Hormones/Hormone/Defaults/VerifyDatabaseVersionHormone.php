@@ -36,7 +36,7 @@ class VerifyDatabaseVersionHormone extends Hormone{
 		];
 	}
 
-	public function respond(array $args){
+	public function respond(array $args) : void{
 		if(($this->dbVersion >> 16) > HormonesPlugin::DATABASE_MAJOR_VERSION){
 			/** @var HormonesPlugin $plugin */
 			list($plugin) = $args;

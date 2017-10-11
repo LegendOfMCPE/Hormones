@@ -37,7 +37,7 @@ class NetChat extends PluginBase implements Listener{
 	/** @var NetChatChannel[] */
 	private $loadedChannels = []; // TODO clean loaded channels periodically
 
-	public function onEnable(){
+	public function onEnable() : void{
 		$this->hormones = HormonesPlugin::getInstance($this->getServer()) or assert(false, "Hormones not loaded");
 		// TODO check version
 
@@ -49,30 +49,30 @@ class NetChat extends PluginBase implements Listener{
 	 * @priority        MONITOR
 	 * @ignoreCancelled true
 	 */
-	public function e_onLogin(PlayerLoginEvent $event){
+	public function e_onLogin(PlayerLoginEvent $event) : void{
 		$session = new NetChatSession($this, $event->getPlayer());
 		$this->sessions[$event->getPlayer()->getId()] = $session;
 	}
 
-	public function e_onQuit(PlayerQuitEvent $event){
+	public function e_onQuit(PlayerQuitEvent $event) : void{
 		if(isset($this->sessions[$event->getPlayer()->getId()])){
 			$this->sessions[$event->getPlayer()->getId()]->finalize();
 			unset($this->sessions[$event->getPlayer()->getId()]);
 		}
 	}
 
-	public function e_identifyHormone(UnknownHormoneEvent $event){
+	public function e_identifyHormone(UnknownHormoneEvent $event) : void{
 		if($event->getType() === ChatEventHormone::TYPE){
 			$event->setHormone(new ChatEventHormone($event->getReceptors()));
 			$event->setRespondArgs([$this]);
 		}
 	}
 
-	public function getLoadedChannel(string $name){
+	public function getLoadedChannel(string $name) : ?NetChatChannel{
 		return $this->loadedChannels[mb_strtolower($name)] ?? null;
 	}
 
-	public function lazyGetChannel(string $name, callable $return, callable $notFound = null){
+	public function lazyGetChannel(string $name, callable $return, callable $notFound = null) : void{
 		$lowName = mb_strtolower($name);
 		if(isset($lowName)){
 			$return($this->loadedChannels[$lowName]);

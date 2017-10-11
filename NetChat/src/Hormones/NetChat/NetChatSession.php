@@ -54,7 +54,7 @@ class NetChatSession{
 	 *
 	 * @param MysqlResult $result
 	 */
-	public function init(MysqlResult $result){
+	public function init(MysqlResult $result) : void{
 		if(!($result instanceof MysqlSelectResult)){
 			assert($result instanceof MysqlErrorResult);
 			throw $result->getException();
@@ -80,14 +80,14 @@ class NetChatSession{
 		}
 	}
 
-	private function decrementInitCount(){
+	private function decrementInitCount() : void{
 		--$this->initCount;
 		if($this->initCount === 0){
 			$this->inited = false;
 		}
 	}
 
-	public function finalize(){
+	public function finalize() : void{
 		// TODO save data
 	}
 
@@ -99,7 +99,7 @@ class NetChatSession{
 		return $this->plugin;
 	}
 
-	public function subToChannel(string $name, string $passphrase, callable $callback){
+	public function subToChannel(string $name, string $passphrase, callable $callback) : void{
 		$this->plugin->lazyGetChannel($name, function(NetChatChannel $channel) use ($callback, $passphrase){
 			if($channel->isInviteOnly()){
 				// TODO check

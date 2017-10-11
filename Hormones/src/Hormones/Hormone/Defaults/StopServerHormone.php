@@ -31,7 +31,7 @@ class StopServerHormone extends Hormone{
 		return [];
 	}
 
-	public function respond(array $args){
+	public function respond(array $args) : void{
 		/** @var HormonesPlugin $plugin */
 		list($plugin) = $args;
 

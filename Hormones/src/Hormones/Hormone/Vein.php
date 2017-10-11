@@ -39,7 +39,7 @@ class Vein extends QueryMysqlTask{
 		]);
 	}
 
-	public function execute(){
+	public function execute() : void{
 		$hormone = unserialize($this->hormone);
 
 		$this->setResult(MysqlResult::executeQuery($this->getMysqli(), "INSERT INTO hormones_blood 
@@ -52,7 +52,7 @@ class Vein extends QueryMysqlTask{
 		]));
 	}
 
-	public function onCompletion(Server $server){
+	public function onCompletion(Server $server) : void{
 		$result = $this->getResult();
 		/** @var Hormone $hormone */
 		/** @var HormonesPlugin $plugin */

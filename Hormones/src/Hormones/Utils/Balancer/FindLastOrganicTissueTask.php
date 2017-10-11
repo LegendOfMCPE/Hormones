@@ -37,7 +37,7 @@ class FindLastOrganicTissueTask extends FindOrganicTissueTask{
 		});
 	}
 
-	protected function execute(){
+	protected function execute() : void{
 		$db = $this->getMysqli();
 		$result = MysqlResult::executeQuery($db, "SELECT hormones_organs.name, hormones_organs.organId FROM hormones_accstate
 				INNER JOIN hormones_organs ON hormones_accstate.lastOrgan = hormones_organs.organId

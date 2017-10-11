@@ -31,7 +31,7 @@ class TissueListTask extends QueryMysqlTask{
 		parent::__construct($plugin->getCredentials(), [$plugin, $sender]);
 	}
 
-	protected function execute(){
+	protected function execute() : void{
 		$this->setResult(MysqlResult::executeQuery($this->getMysqli(), "SELECT
 				hormones_organs.name organ, displayName, ip, port, usedSlots, maxSlots
 			FROM hormones_tissues INNER JOIN hormones_organs ON hormones_tissues.organId = hormones_organs.organId
@@ -39,7 +39,7 @@ class TissueListTask extends QueryMysqlTask{
 			ORDER BY hormones_tissues.organId", []));
 	}
 
-	public function onCompletion(Server $server){
+	public function onCompletion(Server $server) : void{
 		/**
 		 * @var HormonesPlugin $plugin
 		 * @var CommandSender  $sender

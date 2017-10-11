@@ -43,7 +43,7 @@ class ChatEventHormone extends Hormone{
 		];
 	}
 
-	public function respond(array $args){
+	public function respond(array $args) : void{
 		/** @var NetChat $plugin */
 		list($plugin) = $args;
 		$channel = $plugin->getLoadedChannel($this->channel);
